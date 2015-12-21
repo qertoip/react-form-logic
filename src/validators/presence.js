@@ -1,0 +1,10 @@
+import { FormLogic } from '../FormLogic';
+
+FormLogic.addValidator('presence', (value, options) => {
+  if(value == "") {
+    return FormLogic.ValidationError({
+      key: 'blank',
+      message: "can't be blank"
+    });
+  }
+});
