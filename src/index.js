@@ -17,4 +17,5 @@ import './dsl/ValidationError.js';
   Validators
 */
 
+import './validators/matches.js';
 import './validators/presence.js';

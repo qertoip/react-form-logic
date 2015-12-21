@@ -9,8 +9,16 @@ FormLogic.Field = function(fieldValidators) {
     const errors = [];
 
     for(const validation of this.validations) {
-      const error = validation(value);
-      if(error) errors.push(error);
+      const errorsOrError = validation(value);
+
+      if(errorsOrError) {
+        if(errorsOrError.length) {
+          errors.push.apply(errors, errorsOrError);
+        }
+        else {
+          errors.push(errorsOrError);
+        }
+      }
     }
     
     return errors;
