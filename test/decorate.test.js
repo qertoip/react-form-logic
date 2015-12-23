@@ -25,7 +25,7 @@ describe('FormLogic component decorator', () => {
 
     it('handles form change event', () => {
       const rendered = render();
-      rendered.props.onChange({ target: { tagName: 'INPUT', name: 'email', value: '' } });
+      rendered.props.formProps.onChange({ target: { tagName: 'INPUT', name: 'email', value: '' } });
 
       const form = rendered.props.form;
 

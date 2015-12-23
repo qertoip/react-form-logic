@@ -15,7 +15,7 @@ FormLogic.decorate = (form, FormComponent) => {
 
     componentWillReceiveProps(props) {
       this.formState.setErrors(props.errors);
-    }      
+    }
 
     handleChange(event) {
       if(this.isField(event.target)) {
@@ -43,15 +43,13 @@ FormLogic.decorate = (form, FormComponent) => {
 
     handleSubmit(event) {
       event.preventDefault();
-      
+
       const valid = this.formState.submitForm();
 
       this.setState(this.formState.getState());
 
       if(valid) {
-        const values = this.formState.getValues();
-
-        this.props.onSubmit(values);
+        this.props.onSubmit(this.formState, this.props);
       }
     }
 
@@ -60,14 +58,18 @@ FormLogic.decorate = (form, FormComponent) => {
     }
 
     render() {
+      const formProps = {
+        onChange: this.handleChange.bind(this),
+        onFocus: this.handleFocus.bind(this),
+        onBlur: this.handleBlur.bind(this),
+        onSubmit: this.handleSubmit.bind(this)
+      };
+
       return (
         <FormComponent
           {...this.props}
           form={this.state}
-          onChange={this.handleChange.bind(this)}
-          onFocus={this.handleFocus.bind(this)}
-          onBlur={this.handleBlur.bind(this)}
-          onSubmit={this.handleSubmit.bind(this)}
+          formProps={formProps}
         />
       );
     }

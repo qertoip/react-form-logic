@@ -9,6 +9,7 @@ export class FormState {
     this.component = component;
 
     this.state = {};
+    this.values = {};
 
     this.state.fields = transform(form.fields, (fields, field, fieldName) => {
       fields[fieldName] = new FieldState(fieldName);
@@ -29,6 +30,7 @@ export class FormState {
 
   changeField(fieldName, fieldValue) {
     this.state.fields[fieldName].change(fieldValue);
+    this.values[fieldName] = fieldValue;
 
     return this.validate();
   }
@@ -40,13 +42,13 @@ export class FormState {
   }
 
   validate() {
-    const values = transform(this.state.fields, (values, fieldState, fieldName) => {
+    const validatedValues = transform(this.state.fields, (validatedValues, fieldState, fieldName) => {
       if(fieldState.touched) {
-        values[fieldName] = fieldState.value;
+        validatedValues[fieldName] = this.values[fieldName];
       }
     });
 
-    return this.setErrors(this.form.validate(values));
+    return this.setErrors(this.form.validate(validatedValues));
   }
 
   setErrors(errors) {
