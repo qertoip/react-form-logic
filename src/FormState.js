@@ -75,10 +75,4 @@ export class FormState {
   getState() {
     return this.state;
   }
-
-  getValues() {
-    return transform(this.state.fields, (values, fieldState, fieldName) => {
-      values[fieldName] = fieldState.value;
-    });
-  }
 }
