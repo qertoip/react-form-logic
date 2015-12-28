@@ -9,7 +9,7 @@ export class FormState {
     this.component = component;
 
     this.state = {};
-    this.values = {};
+    this.state.values = {};
 
     this.state.fields = transform(form.fields, (fields, field, fieldName) => {
       fields[fieldName] = new FieldState(fieldName);
@@ -18,19 +18,24 @@ export class FormState {
     this.setErrors(errors);
   }
 
-  focusField(fieldName) {
+  focusField(event) {
+    const fieldName = event.target.name;
     this.state.fields[fieldName].focus();
   }
 
-  blurField(fieldName) {
+  blurField(event) {
+    const fieldName = event.target.name;
     this.state.fields[fieldName].blur();
 
     return this.validate();
   }
 
-  changeField(fieldName, fieldValue) {
+  changeField(event) {
+    const fieldName = event.target.name;
+    const fieldValue = event.target.value;
+
     this.state.fields[fieldName].change(fieldValue);
-    this.values[fieldName] = fieldValue;
+    this.state.values[fieldName] = fieldValue;
 
     return this.validate();
   }
@@ -44,7 +49,7 @@ export class FormState {
   validate() {
     const validatedValues = transform(this.state.fields, (validatedValues, fieldState, fieldName) => {
       if(fieldState.touched) {
-        validatedValues[fieldName] = this.values[fieldName];
+        validatedValues[fieldName] = this.state.values[fieldName];
       }
     });
 

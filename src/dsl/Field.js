@@ -1,6 +1,6 @@
 import { FormLogic } from '../FormLogic';
 
-FormLogic.Field = function(fieldValidators) {
+FormLogic.Field = function(config) {
   const field = {};
 
   field.validations = [];
@@ -24,8 +24,12 @@ FormLogic.Field = function(fieldValidators) {
     return errors;
   };
 
-  for(const validatorName in fieldValidators) {
-    const validationOptions = fieldValidators[validatorName];
+  field.options = config.options ? config.options : {};
+
+  for(const validatorName in config) {
+    if(validatorName === 'options') continue;
+
+    const validationOptions = config[validatorName];
 
     const validation = (fieldValue) => {
       const validator = FormLogic.validators[validatorName];

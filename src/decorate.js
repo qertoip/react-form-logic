@@ -19,24 +19,27 @@ FormLogic.decorate = (form, FormComponent) => {
 
     handleChange(event) {
       if(this.isField(event.target)) {
-        const field = event.target;
-        this.formState.changeField(field.name, field.value);
+        this.formState.changeField(event);
         this.setState(this.formState.getState());
+
+        const field = form.fields[event.target.name];
+
+        if(field.options.onChange) {
+          field.options.onChange(event.target.value, this.state, this.props, event);
+        }
       }
     }
 
     handleFocus(event) {
       if(this.isField(event.target)) {
-        const field = event.target;
-        this.formState.focusField(field.name, field.value);
+        this.formState.focusField(event);
         this.setState(this.formState.getState());
       }
     }
 
     handleBlur(event) {
       if(this.isField(event.target)) {
-        const field = event.target;
-        this.formState.blurField(field.name, field.value);
+        this.formState.blurField(event);
         this.setState(this.formState.getState());
       }
     }
@@ -49,7 +52,7 @@ FormLogic.decorate = (form, FormComponent) => {
       this.setState(this.formState.getState());
 
       if(valid) {
-        this.props.onSubmit(this.formState, this.props);
+        this.props.onSubmit(this.state, this.props);
       }
     }
 
