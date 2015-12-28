@@ -13,6 +13,8 @@ export class FormState {
 
     this.state.fields = transform(form.fields, (fields, field, fieldName) => {
       fields[fieldName] = new FieldState(fieldName);
+
+      this.state.values[fieldName] = "";
     });
 
     this.setErrors(errors);

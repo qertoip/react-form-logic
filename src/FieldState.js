@@ -8,6 +8,8 @@ export class FieldState {
     this.dirty = false;
     this.touched = false;
     this.focused = false;
+
+    this.value = "";
   }
 
   focus() {
