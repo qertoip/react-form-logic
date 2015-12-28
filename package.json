@@ -1,8 +1,9 @@
 {
   "name": "react-form-logic",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "react-form-logic",
   "main": "lib/index.js",
+  "jsnext:main": "src/index.js",
   "scripts": {
     "build": "npm run build:lib && npm run build:umd",
     "build:lib": "babel src --out-dir lib",
