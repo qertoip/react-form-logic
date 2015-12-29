@@ -52,7 +52,7 @@ FormLogic.decorate = (form, FormComponent) => {
       this.setState(this.formState.getState());
 
       if(valid) {
-        this.props.onSubmit(this.state, this.props);
+        this.props.onSubmit(this.state, this.props, this.refs.decorated.state);
       }
     }
 
@@ -73,6 +73,7 @@ FormLogic.decorate = (form, FormComponent) => {
           {...this.props}
           form={this.state}
           formProps={formProps}
+          ref='decorated'
         />
       );
     }
