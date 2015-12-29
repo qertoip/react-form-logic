@@ -1,5 +1,3 @@
-import { each, map, size, transform, isArray } from 'lodash';
-
 import { FormLogic } from './FormLogic';
 import { FieldState } from './FieldState';
 
@@ -9,13 +7,13 @@ export class FormState {
     this.component = component;
 
     this.state = {};
+    this.state.fields = {}
     this.state.values = {};
 
-    this.state.fields = transform(form.fields, (fields, field, fieldName) => {
-      fields[fieldName] = new FieldState(fieldName);
-
+    for(const fieldName in form.fields) {
+      this.state.fields[fieldName] = new FieldState(fieldName);
       this.state.values[fieldName] = "";
-    });
+    };
 
     this.setErrors(errors);
   }
@@ -43,17 +41,21 @@ export class FormState {
   }
 
   submitForm() {
-    each(this.state.fields, (fieldState) => fieldState.touch());
+    for(const fieldName in this.state.fields) {
+      this.state.fields[fieldName].touch();
+    }
 
     return this.validate();
   }
 
   validate() {
-    const validatedValues = transform(this.state.fields, (validatedValues, fieldState, fieldName) => {
-      if(fieldState.touched) {
+    const validatedValues = {};
+
+    for(const fieldName in this.state.fields) {
+      if(this.state.fields[fieldName].touched) {
         validatedValues[fieldName] = this.state.values[fieldName];
       }
-    });
+    }
 
     return this.setErrors(this.form.validate(validatedValues));
   }
@@ -61,10 +63,12 @@ export class FormState {
   setErrors(errors) {
     let valid = true;
 
-    each(errors, (fieldErrors, fieldName) => {
+    for(const fieldName in errors) {
+      const fieldErrors = errors[fieldName];
+
       if(fieldErrors.length > 0) valid = false;
 
-      const processedErrors = map(fieldErrors, (error) => {
+      const processedErrors = fieldErrors.map((error) => {
         if(FormLogic.config.errorMessageFormat) {
           error.formattedMessage =
             FormLogic.config.errorMessageFormat(error, this.state.fields[fieldName], this.component);
@@ -74,7 +78,7 @@ export class FormState {
       });
 
       this.state.fields[fieldName].setErrors(processedErrors);
-    });
+    };
 
     return valid;
   }

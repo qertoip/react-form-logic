@@ -17,7 +17,6 @@
     "mocha": "^2.3.4",
     "react": "^0.14.2",
     "react-addons-test-utils": "^0.14.2",
-    "lodash": "^3.10.1",
     "webpack": "^1.12.2"
   }
 }

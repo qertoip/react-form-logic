@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import { transform } from 'lodash';
-
 import { FormState } from './FormState';
 
 export function FormLogic(form) {
