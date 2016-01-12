@@ -2,7 +2,9 @@ import { FormLogic } from './FormLogic';
 import { FieldState } from './FieldState';
 
 export class FormState {
-  constructor(form, values, errors, component) {
+  constructor(form, initialValues, errors, component) {
+    const values = initialValues || {};
+    
     this.form = form;
     this.component = component;
 
