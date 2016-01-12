@@ -1,15 +1,16 @@
 export class FieldState {
-  constructor(fieldName) {
+  constructor(fieldName, initialValue) {
     this.name = fieldName;
 
     this.invalid = false;
     this.errors = [];
 
-    this.dirty = false;
-    this.touched = false;
+    this.dirty = !!initialValue;
+    this.touched = !!initialValue;
     this.focused = false;
 
-    this.value = "";
+    this.value = initialValue ? initialValue : '';
+    this.defaultValue = initialValue ? initialValue : '';
   }
 
   focus() {

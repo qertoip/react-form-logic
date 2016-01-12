@@ -8,7 +8,7 @@ FormLogic.decorate = (form, FormComponent) => {
     constructor(props) {
       super(props);
 
-      this.formState = new FormState(form, props.errors, FormComponent);
+      this.formState = new FormState(form, props.values, props.errors, FormComponent);
 
       this.state = this.formState.getState();
     }

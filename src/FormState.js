@@ -2,7 +2,7 @@ import { FormLogic } from './FormLogic';
 import { FieldState } from './FieldState';
 
 export class FormState {
-  constructor(form, errors, component) {
+  constructor(form, values, errors, component) {
     this.form = form;
     this.component = component;
 
@@ -11,8 +11,8 @@ export class FormState {
     this.state.values = {};
 
     for(const fieldName in form.fields) {
-      this.state.fields[fieldName] = new FieldState(fieldName);
-      this.state.values[fieldName] = "";
+      this.state.fields[fieldName] = new FieldState(fieldName, values[fieldName]);
+      this.state.values[fieldName] = values[fieldName];
     };
 
     this.setErrors(errors);

@@ -1,6 +1,6 @@
 {
   "name": "react-form-logic",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "react-form-logic",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
@@ -15,8 +15,6 @@
     "babel-loader": "^5.3.2",
     "chai": "^3.4.1",
     "mocha": "^2.3.4",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
     "react-addons-test-utils": "^0.14.2",
     "webpack": "^1.12.2"
   },
