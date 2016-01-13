@@ -14,7 +14,7 @@ export class FormState {
 
     for(const fieldName in form.fields) {
       this.state.fields[fieldName] = new FieldState(fieldName, values[fieldName]);
-      this.state.values[fieldName] = values[fieldName];
+      this.state.values[fieldName] = values[fieldName] || '';
     };
 
     this.setErrors(errors);
