@@ -2,7 +2,10 @@
   React layer
 */
 
-export { FormLogic } from './FormLogic.js';
+import { FormLogic } from './FormLogic.js';
+
+export default FormLogic;
+
 import './decorate.js';
 
 /*

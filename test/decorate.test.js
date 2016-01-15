@@ -2,7 +2,7 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
 
-import { decorate, FormLogic } from '../src';
+import FormLogic from '../src';
 
 describe('FormLogic component decorator', () => {
   describe('dealing with client-side validations', () => {
@@ -41,6 +41,7 @@ describe('FormLogic component decorator', () => {
   describe('dealing with server-side validations', () => {
     function render() {
       const form = FormLogic.Form({
+        name: 'Form',
         fields: {
           email: FormLogic.Field({ presence: true }),
           password: FormLogic.Field({ presence: true })
@@ -75,8 +76,8 @@ describe('FormLogic component decorator', () => {
 
     it('formats the server errors', () => {
       FormLogic.configure({
-        errorMessageFormat: (error, field, component) => {
-          return `${component.name}: ${field.name} is ${error.key}`;
+        errorMessageFormat: (error, form, formState, fieldState) => {
+          return `${form.name}: ${fieldState.name} is ${error.key}`;
         }
       });
 
@@ -84,7 +85,7 @@ describe('FormLogic component decorator', () => {
         {
           message: 'already taken',
           key: 'taken',
-          formattedMessage: 'FormComponent: email is taken'
+          formattedMessage: 'Form: email is taken'
         }
       ];
 

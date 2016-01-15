@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { FormLogic } from '../../src';
+import FormLogic from '../../src';
 
 describe('matches validator', () => {
   it('validates matching string', () => {

@@ -2,11 +2,10 @@ import { FormLogic } from './FormLogic';
 import { FieldState } from './FieldState';
 
 export class FormState {
-  constructor(form, initialValues, errors, component) {
+  constructor(form, initialValues, errors) {
     const values = initialValues || {};
     
     this.form = form;
-    this.component = component;
 
     this.state = {};
     this.state.fields = {}
@@ -73,7 +72,7 @@ export class FormState {
       const processedErrors = fieldErrors.map((error) => {
         if(FormLogic.config.errorMessageFormat) {
           error.formattedMessage =
-            FormLogic.config.errorMessageFormat(error, this.state.fields[fieldName], this.component);
+            FormLogic.config.errorMessageFormat(error, this.form, this.state, this.state.fields[fieldName]);
         }
 
         return error;

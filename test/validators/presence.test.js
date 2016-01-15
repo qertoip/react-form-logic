@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { FormLogic } from '../../src';
+import FormLogic from '../../src';
 
 describe('presence validator', () => {
   it('validates non-empty string', () => {
