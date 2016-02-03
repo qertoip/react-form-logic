@@ -1,6 +1,6 @@
 {
   "name": "react-form-logic",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "react-form-logic",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",

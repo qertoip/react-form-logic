@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { AutofillChangeEventPolyfill } from './AutofillChangeEventPolyfill';
 import { FormLogic } from './FormLogic';
 import { FormState } from './FormState';
 
@@ -69,12 +70,14 @@ FormLogic.decorate = (form, FormComponent) => {
       };
 
       return (
-        <FormComponent
-          {...this.props}
-          form={this.state}
-          formProps={formProps}
-          ref='decorated'
-        />
+        <AutofillChangeEventPolyfill>
+          <FormComponent
+            {...this.props}
+            form={this.state}
+            formProps={formProps}
+            ref='decorated'
+          />
+        </AutofillChangeEventPolyfill>
       );
     }
   };
