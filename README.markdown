@@ -56,15 +56,48 @@ export class SignUpForm extends Component {
   render() {
     return (
       <form {...this.props.formProps}>
-        Email: <input type='text' {...this.props.form.fields.email} />
-        Password: <input type='password' {...this.props.form.fields.email} />
+        Email:
+        <input type='text' {...this.props.form.fields.email} />
+
+        Password:
+        <input type='password' {...this.props.form.fields.email} />
       </form>
     );
   }
 }
 ```
 
-## Submitting the form to the server
+## Using custom components for the form and form fields
+
+Since react-form-logic interacts with React just through props, you
+can easily use it with your custom form components. It looks much
+better:
+
+```javascript
+@FormLogic(form)
+export class SignUpForm extends Component {
+  render() {
+    return (
+      <Form {...this.props.formProps}>
+        <InputField caption='E-mail' />
+        <PasswordField caption='Password' />
+      </Form>
+    );
+  }
+}
+
+export const Form = () => {
+};
+
+export const InputField = () => {
+};
+
+export const PasswordField = () => {
+};
+
+export const Button = () => {
+};
+```
 
 ## Configuring validation error messages
 
