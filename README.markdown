@@ -29,9 +29,10 @@ The library is also meant to:
 ## Getting started
 
 react-form-logic works by generating a wrapper component for the
-component that renders your form, based on an object that describes
-the form fields. This object defines the field names, validations and
-custom event handlers for the fields. It looks like this:
+component that renders your form, based on an object that defines the
+logic for the form (hence the name of the library). This object
+defines the field names, validations and custom event handlers for the
+fields. It looks like this:
 
 ```javascript
 const form = FormLogic.Form({
