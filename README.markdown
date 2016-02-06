@@ -67,7 +67,7 @@ export class SignUpForm extends Component {
 
 ## Configuring validation error messages
 
-## Defining additional custom event handlers
+## Defining custom event handlers for form fields
 
 ## Available validators
 
