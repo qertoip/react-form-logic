@@ -59,6 +59,12 @@ additional props into your component, that you need to pass to your
 @FormLogic(form)
 export class SignUpForm extends Component {
   render() {
+    return (
+      <form {...this.props.formProps}>
+        Email: <input type='text' {...this.props.form.fields.email} />
+        Password: <input type='password' {...this.props.form.fields.email} />
+      </form>
+    );
   }
 }
 ```
