@@ -28,17 +28,10 @@ The library is also meant to:
 
 ## Getting started
 
-You use react-form-logic be defining a form object, and then using it
-to generate a wrapper component for the component that renders your
-form.
-
-The form object describes the fields your form has, the validations
-those fields should have and additional event handlers for events
-related to the form. Passing your event handlers in this way allows
-react-form-logic to automatically combine your custom form logic with
-the validaton logic.
-
-It looks like this:
+react-form-logic works by generating a wrapper component for the
+component that renders your form, based on an object that describes
+the form fields. This object defines the field names, validations and
+custom event handlers for the fields. It looks like this:
 
 ```javascript
 const form = FormLogic.Form({
@@ -52,8 +45,9 @@ const form = FormLogic.Form({
 
 The wrapper component will accept some additional props that your
 original component itself does not handle and will also inject
-additional props into your component, that you need to pass to your
-\<form\>, your \<label\>'s and \<input\>'s. Example:
+additional props into your component that you then need to pass to
+your \<form\>, your \<label\>'s and \<input\>'s. Continuing the
+previous example:
 
 ```javascript
 @FormLogic(form)
