@@ -12,10 +12,17 @@ This is a form-handling library for React that makes it easy to:
 
 * internationalize validation error messages
 
-The library is meant to be small and self-contained, and to be as
-close in spirit to React itself as possible. react-form-logic tries to
-make your form-handling code not feel too different from all your
-other React code, to the extent possible.
+The library is also meant to:
+
+* be small and self-contained
+
+* have an API that keeps your form-handling code similar to all your
+  other React-based code
+
+* leave full control of the markup to your React components
+
+* not interfere with any other custom dynamic behaviour you might want
+  to build into your forms
 
 ## Getting started
 
