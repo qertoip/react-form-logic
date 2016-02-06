@@ -16,8 +16,10 @@ The library is also meant to:
 
 * be small and self-contained
 
-* have an API that keeps your form-handling code similar to all your
-  other React-based code
+* keep your form-handling code similar to all your other React-based
+  code
+
+* have a stable API
 
 * leave full control of the markup to your React components
 
@@ -31,8 +33,12 @@ to generate a wrapper component for the component that renders your
 form.
 
 The form object describes the fields your form has, the validations
-you want them to have and additional event handlers for events related
-to the form. It looks like this:
+those fields should have and additional event handlers for events
+related to the form. The last bit allows react-form-logic to combine
+the validation logic with any other logic you might want to add to
+your forms.
+
+It looks like this:
 
 ```javascript
 const form = FormLogic.Form({
