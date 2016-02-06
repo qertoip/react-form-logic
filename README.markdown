@@ -34,9 +34,9 @@ form.
 
 The form object describes the fields your form has, the validations
 those fields should have and additional event handlers for events
-related to the form. The last bit allows react-form-logic to combine
-the validation logic with any other logic you might want to add to
-your forms.
+related to the form. Passing your event handlers in this way allows
+react-form-logic to automatically combine your custom form logic with
+the validaton logic.
 
 It looks like this:
 
