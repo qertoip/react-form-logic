@@ -1,7 +1,6 @@
 # react-form-logic
 
-react-form-logic is a library for handling forms in React. The project
-is intended to make it easy to:
+This is a form-handling library for React that makes it easy to:
 
 * serialize forms into JSON and handle form submission
 
@@ -12,10 +11,10 @@ is intended to make it easy to:
 
 * internationalize validation error messages
 
-Additionally, the library is meant to be small and self-contained, and
-to be as close in spirit to React itself as possible - I believe your
-form handling code should not feel too different from all your other
-React code, to the extent possible.
+The library is meant to be small and self-contained, and to be as
+close in spirit to React itself as possible. react-form-logic tries to
+make your form-handling code not feel too different from all your
+other React code, to the extent possible.
 
 ## Getting started
 
@@ -40,7 +39,7 @@ const form = FormLogic.Form({
 The wrapper component will accept some additional props that your
 original component itself does not handle and will also inject
 additional props into your component, that you need to pass to your
-<form>, your <label>'s and <input>'s. Example:
+\<form\>, your \<label\>'s and \<input\>'s. Example:
 
 ```javascript
 @FormLogic(form)
