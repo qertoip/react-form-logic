@@ -14,12 +14,12 @@ This is a form-handling library for React that makes it easy to:
 
 The library is also meant to:
 
+* have a stable API
+
 * be small and self-contained
 
 * keep your form-handling code similar to all your other React-based
   code
-
-* have a stable API
 
 * leave full control of the markup to your React components
 
