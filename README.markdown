@@ -2,12 +2,13 @@
 
 This is a form-handling library for React that makes it easy to:
 
-* serialize forms into JSON and handle form submission
+* serialize forms into JSON and submit them to the server
 
 * set up client-side validations without installing any additional
   libraries
 
-* unify handling of client-side validations and server-side validations
+* combine server-side validations with client-side validations in a
+  streamlined way
 
 * internationalize validation error messages
 
