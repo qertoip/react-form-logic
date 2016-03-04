@@ -37,7 +37,11 @@ export class FieldState {
   }
 
   setErrors(errors) {
-    if(errors.length > 0) this.invalid = true;    
+    if(errors.length > 0) {
+      this.invalid = true;
+    } else {
+      this.invalid = false;
+    }
 
     this.errors = errors;
   }
