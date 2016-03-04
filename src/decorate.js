@@ -9,13 +9,16 @@ FormLogic.decorate = (form, FormComponent) => {
     constructor(props) {
       super(props);
 
-      this.formState = new FormState(form, props.values, props.errors);
+      this.formState = new FormState(form, props.values, props.errors || {});
 
       this.state = this.formState.getState();
     }
 
     componentWillReceiveProps(props) {
-      this.formState.setErrors(props.errors);
+      if(props.errors != this.props.errors) {
+        this.formState.setServerErrors(props.errors);
+        this.setState(this.formState.getState());
+      }
     }
 
     handleChange(event) {

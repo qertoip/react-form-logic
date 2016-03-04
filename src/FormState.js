@@ -2,8 +2,11 @@ import { FormLogic } from './FormLogic';
 import { FieldState } from './FieldState';
 
 export class FormState {
-  constructor(form, initialValues, errors) {
+  constructor(form, initialValues, serverErrors) {
     const values = initialValues || {};
+
+    this.clientErrors = {};
+    this.serverErrors = serverErrors;
     
     this.form = form;
 
@@ -16,7 +19,7 @@ export class FormState {
       this.state.values[fieldName] = values[fieldName] || '';
     };
 
-    this.setErrors(errors);
+    this.updateErrors();
   }
 
   focusField(event) {
@@ -34,6 +37,8 @@ export class FormState {
   changeField(event) {
     const fieldName = event.target.name;
     const fieldValue = event.target.value;
+
+    this.serverErrors[fieldName] = undefined;
 
     this.state.fields[fieldName].change(fieldValue);
     this.state.values[fieldName] = fieldValue;
@@ -58,16 +63,26 @@ export class FormState {
       }
     }
 
-    return this.setErrors(this.form.validate(validatedValues));
+    this.clientErrors = this.form.validate(validatedValues);
+
+    return this.updateErrors();
   }
 
-  setErrors(errors) {
+  setServerErrors(errors) {
+    this.serverErrors = errors || {};
+
+    return this.updateErrors();
+  }
+
+  updateErrors() {
     let valid = true;
 
-    for(const fieldName in errors) {
-      const fieldErrors = errors[fieldName];
+    for(const fieldName in this.state.fields) {
+      const clientErrors = this.clientErrors[fieldName] || [];
+      const serverErrors = this.serverErrors[fieldName] || [];
+      const fieldErrors = clientErrors.concat(serverErrors);
 
-      if(fieldErrors.length > 0) valid = false;
+      if(clientErrors.length > 0) valid = false;
 
       const processedErrors = fieldErrors.map((error) => {
         if(FormLogic.config.errorMessageFormat) {

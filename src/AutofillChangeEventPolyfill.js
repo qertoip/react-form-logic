@@ -19,8 +19,12 @@ export class AutofillChangeEventPolyfill extends Component {
         [rootNode] :
         rootNode.querySelectorAll('form');
 
-    Array.forEach(forms, (form) => {
-      Array.forEach(form.elements, (element) => {
+    for(var i = 0; i < forms.length; i++) {
+      const form = forms[i];
+
+      for(var j = 0; j < form.elements.length; j++) {
+        const element = form.elements[j];
+
         this.changeListeners.push(setInterval(function() {
           if (this.previousValue === this.element.value) {
             return;
@@ -32,12 +36,15 @@ export class AutofillChangeEventPolyfill extends Component {
           event.initEvent('input', true, true);
           this.element.dispatchEvent(event);
         }.bind({ element, previousValue: '' }), 50));
-      });
-    });
+      }
+    }
   }
 
   componentWillUnmount() {
-    this.changeListeners.forEach((listener) => clearInterval(listener));
+    for(var i = 0; i < this.changeListeners.length; i++) {
+      const listener = this.changeListeners[i];
+      clearInterval(listener)
+    }
   }
 
   render() {

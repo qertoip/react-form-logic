@@ -25,9 +25,11 @@ describe('FormLogic component decorator', () => {
 
     it('handles form change event', () => {
       const rendered = render();
-      rendered.props.formProps.onChange({ target: { tagName: 'INPUT', name: 'email', value: '' } });
+      const formLogicComponent = rendered.props.children;
+      
+      formLogicComponent.props.formProps.onChange({ target: { tagName: 'INPUT', name: 'email', value: '' } });
 
-      const form = rendered.props.form;
+      const form = formLogicComponent.props.form;
 
       const expectedErrors = [{
         key: "blank",
@@ -69,7 +71,9 @@ describe('FormLogic component decorator', () => {
     it('injects server side errors', () => {
       const expectedErrors = [{ key: 'taken', message: 'already taken' }];
       const rendered = render();
-      const form = rendered.props.form;
+      const formLogicComponent = rendered.props.children;
+
+      const form = formLogicComponent.props.form;
 
       expect(form.fields.email.errors).to.deep.equal(expectedErrors);
     });
@@ -90,7 +94,8 @@ describe('FormLogic component decorator', () => {
       ];
 
       const rendered = render();
-      const form = rendered.props.form;
+      const formLogicComponent = rendered.props.children;
+      const form = formLogicComponent.props.form;
 
       expect(form.fields.email.errors).to.deep.equal(expectedErrors);
     });
