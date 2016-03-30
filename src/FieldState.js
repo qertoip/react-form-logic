@@ -7,6 +7,7 @@ export class FieldState {
 
     this.dirty = !!initialValue;
     this.touched = !!initialValue;
+    this.filled = !!initialValue;
     this.focused = false;
 
     this.value = initialValue ? initialValue : '';
@@ -28,6 +29,7 @@ export class FieldState {
 
     this.dirty = true;
     this.touched = true;
+    this.filled = !!value;
 
     this.value = value;
   }
