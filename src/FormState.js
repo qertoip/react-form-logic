@@ -35,8 +35,9 @@ export class FormState {
   }
 
   changeField(event) {
+    const fieldType = event.target.type;
     const fieldName = event.target.name;
-    const fieldValue = event.target.value;
+    const fieldValue = fieldType === 'checkbox' ? event.target.checked : event.target.value;
 
     this.serverErrors[fieldName] = undefined;
 
