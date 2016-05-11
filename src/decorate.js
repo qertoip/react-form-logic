@@ -39,6 +39,8 @@ FormLogic.decorate = (form, FormComponent) => {
         this.formState.focusField(event);
         this.setState(this.formState.getState());
 
+        const field = form.fields[event.target.name];
+
         if(field.options.onFocus) {
           field.options.onFocus(event.target.value, this.state, this.props, event);
         }
@@ -49,6 +51,8 @@ FormLogic.decorate = (form, FormComponent) => {
       if(this.isField(event.target)) {
         this.formState.blurField(event);
         this.setState(this.formState.getState());
+
+        const field = form.fields[event.target.name];
 
         if(field.options.onBlur) {
           field.options.onBlur(event.target.value, this.state, this.props, event);
