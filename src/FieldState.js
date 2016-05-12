@@ -47,4 +47,8 @@ export class FieldState {
 
     this.errors = errors;
   }
+
+  setValue(value) {
+    this.value = value;
+  }
 }

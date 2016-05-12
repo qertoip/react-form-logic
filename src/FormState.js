@@ -11,13 +11,13 @@ export class FormState {
     this.form = form;
 
     this.state = {};
-    this.state.fields = {}
+    this.state.fields = {};
     this.state.values = {};
 
     for(const fieldName in form.fields) {
       this.state.fields[fieldName] = new FieldState(fieldName, values[fieldName]);
       this.state.values[fieldName] = values[fieldName] || '';
-    };
+    }
 
     this.updateErrors();
   }
@@ -94,9 +94,15 @@ export class FormState {
       });
 
       this.state.fields[fieldName].setErrors(processedErrors);
-    };
+    }
 
     return valid;
+  }
+
+  updateValues(values) {
+    for(const fieldName in this.state.fields) {
+      this.state.fields[fieldName].setValue(values[fieldName]);
+    }
   }
 
   getState() {
