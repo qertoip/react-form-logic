@@ -21,7 +21,7 @@ FormLogic.decorate = (form, FormComponent) => {
       }
 
       if(props.values != this.props.values) {
-        this.formState.updateValues(props.values);
+        this.formState = new FormState(form, props.values, props.errors || {});
         this.setState(this.formState.getState());
       }
     }
