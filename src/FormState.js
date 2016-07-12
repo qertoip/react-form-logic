@@ -3,18 +3,23 @@ import { FieldState } from './FieldState';
 
 export class FormState {
   constructor(form, initialValues, serverErrors) {
-    const values = initialValues || {};
-
-    this.clientErrors = {};
-    this.serverErrors = serverErrors;
-    
     this.form = form;
+    this.initialValues = initialValues;
+    this.serverErrors = serverErrors;
+
+    this.reset();
+  }
+
+  reset() {
+    this.clientErrors = {};
 
     this.state = {};
     this.state.fields = {}
     this.state.values = {};
 
-    for(const fieldName in form.fields) {
+    const values = this.initialValues || {};
+
+    for(const fieldName in this.form.fields) {
       this.state.fields[fieldName] = new FieldState(fieldName, values[fieldName]);
       this.state.values[fieldName] = values[fieldName] || '';
     };

@@ -78,6 +78,7 @@ FormLogic.decorate = (form, FormComponent) => {
             {...this.props}
             form={this.state}
             formProps={formProps}
+            resetForm={this.formState.reset.bind(this.formState)}
             ref='decorated'
           />
         </AutofillChangeEventPolyfill>
