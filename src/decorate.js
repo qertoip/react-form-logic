@@ -64,6 +64,11 @@ FormLogic.decorate = (form, FormComponent) => {
       return element.tagName === 'INPUT' || element.tagName === 'SELECT';
     }
 
+    resetForm() {
+      this.formState.reset();
+      this.setState(this.formState.getState());
+    }
+
     render() {
       const formProps = {
         onChange: this.handleChange.bind(this),
@@ -78,7 +83,7 @@ FormLogic.decorate = (form, FormComponent) => {
             {...this.props}
             form={this.state}
             formProps={formProps}
-            resetForm={this.formState.reset.bind(this.formState)}
+            resetForm={this.resetForm.bind(this)}
             ref='decorated'
           />
         </AutofillChangeEventPolyfill>
