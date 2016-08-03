@@ -1,6 +1,6 @@
 {
   "name": "react-form-logic",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "react-form-logic",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
@@ -21,6 +21,6 @@
     "webpack": "^1.12.2"
   },
   "peerDependencies": {
-    "react": "^0.15.0"
+    "react": "^15.0.0"
   }
 }
