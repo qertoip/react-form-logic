@@ -69,24 +69,41 @@ FormLogic.decorate = (form, FormComponent) => {
       this.setState(this.formState.getState());
     }
 
+    get _customHandlers() {
+      return this.formState.form.options
+    }
+
+    get _defaultHandlers() {
+      return {
+        onChange: this.handleChange,
+        onFocus: this.handleFocus,
+        onBlur: this.handleBlur,
+        onSubmit: this.handleSubmit
+      }
+    }
+
+    get _handlers() {
+      return Object.assign({}, this._defaultHandlers, this._customHandlers);
+    }
+
     render() {
       const formProps = {
-        onChange: this.handleChange.bind(this),
-        onFocus: this.handleFocus.bind(this),
-        onBlur: this.handleBlur.bind(this),
-        onSubmit: this.handleSubmit.bind(this)
-      };
+        onChange: this._handlers.onChange.bind(this),
+        onFocus: this._handlers.onFocus.bind(this),
+        onBlur: this._handlers.onBlur.bind(this),
+        onSubmit: this._handlers.onSubmit.bind(this)
+      }
 
       return (
-        <AutofillChangeEventPolyfill>
-          <FormComponent
-            {...this.props}
-            form={this.state}
-            formProps={formProps}
-            resetForm={this.resetForm.bind(this)}
-            ref='decorated'
-          />
-        </AutofillChangeEventPolyfill>
+          <AutofillChangeEventPolyfill>
+            <FormComponent
+                {...this.props}
+                form={this.state}
+                formProps={formProps}
+                resetForm={this.resetForm.bind(this)}
+                ref='decorated'
+            />
+          </AutofillChangeEventPolyfill>
       );
     }
   };
