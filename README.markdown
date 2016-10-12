@@ -80,6 +80,33 @@ export const Button = () => {
 
 ## Defining custom event handlers for form fields
 
+## Defining custom event handlers for form
+
+**WARNING: IT SKIPS ALL FORM-LOGIC VALIDATIONS AND STATE CHANGES**
+Use it only if you want to completely abandon formlogic logic.
+Typical usecase: form in unsubmittable
+
+```
+const form = FormLogic.Form({
+  name: 'SearchFriends',
+  fields: {
+    search: FormLogic.Field({
+      options: {
+        onChange: (value, _form, props) => {
+          return props.invitationsSearch(value);
+        }
+      }
+    })
+  },
+  options: {
+    onSubmit: (event) => {
+        event.preventDefault();
+        return false
+    }
+  }
+});
+```
+
 ## Available validators
 
 ## Defining custom validators
