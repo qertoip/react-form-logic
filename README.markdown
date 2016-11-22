@@ -84,7 +84,7 @@ export const Button = () => {
 
 **WARNING: IT SKIPS ALL FORM-LOGIC VALIDATIONS AND STATE CHANGES**
 Use it only if you want to completely abandon formlogic logic.
-Typical usecase: form in unsubmittable
+Typical usecase: form is unsubmittable
 
 ```
 const form = FormLogic.Form({
