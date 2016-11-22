@@ -14,6 +14,7 @@ FormLogic.Form = function(form) {
 
     return formErrors;
   };
+  this.options = Object.assign({}, form.options);
 
   return form;
 };
